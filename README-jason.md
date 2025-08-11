@@ -9,8 +9,8 @@ For Omarchy, I want Neovim to pick up the current theme so, run this command
 ln -s ~/.config/omarchy/current/theme/neovim.lua lua/plugins/theme.lua
 
 For non-Omarchy machine, I use a hard-coded theme.
-On initial clone for a non-Omarchy machine, simply move the 
-lua/plugins/theme.lua.<machine> to lua/plugins/theme.lua.
+On initial clone for a non-Omarchy machine, simply copy the 
+lua/plugins/theme.lua.default to lua/plugins/theme.lua.
 
 Then, assuming this repo has been cloned into ~/repos, simply 
 
