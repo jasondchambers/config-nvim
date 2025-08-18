@@ -7,17 +7,31 @@ Omarchy adds theme switching.
 I use Neovim across all of my machines (Omarchy and macOS) - and I want as much as 
 consistent experience as possible. 
 
-### My tweaks
+I have tweaked the LazyVim starter slightly to my taste.
 
-In addition to turning on relative line numbering, I have tweaked the following key bindings:
+### Keybindings 
+
+Not an exhaustive list - see [LazyVim keymaps](https://www.lazyvim.org/keymaps) for a more comprehensive list.
+
+"\<leader\>" = Space
 
 | Key | Description |
 |---|---|
-| `<leader>td` | toggle lsp diagnostics on/off |
-| s | restored to original vim behavior e i.e. substitute instead of flash.nvim |
+| gd | Goto definition |
+| gr | Find references |
+| s | Restored to original vim behavior e i.e. substitute instead of flash.nvim |
+| "+yy | Yank to system clipboard|
+| \<leader\>td | Toggle lsp diagnostics on/off |
+| \<leader\>e | Toggle explorer |
+| \<leader\>/ | Grep for files |
+| \<leader\>ff | Fuzzy find file open |
+| \<leader\>, | Switch buffer |
+| \<leader\>\| | Split window right |
+| \<leader\>- | Split window below |
+| \<leader\>wd | Delete window |
+| \<leader\>bd | Delete buffer |
+| \<leader\>ft | Open terminal |
 
-
-See [LazyVim](https://github.com/LazyVim/LazyVim) for more details.
 
 ### Installation 
 
