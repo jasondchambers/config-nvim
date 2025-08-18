@@ -31,6 +31,9 @@ Not an exhaustive list - see [LazyVim keymaps](https://www.lazyvim.org/keymaps) 
 | \<leader\>wd | Delete window |
 | \<leader\>bd | Delete buffer |
 | \<leader\>ft | Open terminal |
+| \<leader\>uz | Toggle Zen mode |
+| :Mason | Manage LSP Servers |
+| :checkhealth | Checkhealth |
 
 
 ### Installation 
