@@ -30,6 +30,7 @@ Not an exhaustive list - see [LazyVim keymaps](https://www.lazyvim.org/keymaps) 
 | \<leader\>\| | Split window right |
 | \<leader\>- | Split window below |
 | \<leader\>wd | Delete window |
+| \<leader\>wm | Maximize window |
 | \<leader\>bd | Delete buffer |
 | \<leader\>ft | Open terminal |
 | \<leader\>uz | Toggle Zen mode |
@@ -38,25 +39,27 @@ Not an exhaustive list - see [LazyVim keymaps](https://www.lazyvim.org/keymaps) 
 
 #### Vim motions handy reference
 
-0 Jump to start of line
-$ Jump to end of line
-f Find character (stop at before) on line forward
-F Find character on line reverse
-t Find character (stop just before) on line forward
-T Find character on line reverse
-; to go forwards
-, to go backwards
-w Jump to next word
-e Jump to end of word
-b Jump to previous word
-W Variation of w
-E Variation of e
-B Variation of b
-{ Paragraph forward
-} Paragraph backward
-zz Shift current line to center
-[ ( Find opening brace 
-* search for current word
+| Key | Description |
+|---|---|
+| 0 | Jump to start of line |
+| $ | Jump to end of line |
+| f | Find character (stop at before) on line forward |
+| F | Find character on line reverse |
+| t | Find character (stop just before) on line forward |
+| T | Find character on line reverse |
+| ; | to go forwards |
+| , | to go backwards |
+| w | Jump to next word |
+| e | Jump to end of word |
+| b | Jump to previous word |
+| W | Variation of w |
+| E | Variation of e |
+| B | Variation of b |
+| { | Paragraph forward |
+| } | Paragraph backward |
+| zz | Shift current line to center |
+| [ | ( Find opening brace  |
+| * | search for current word |
 
 
 ### Installation 
