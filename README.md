@@ -22,6 +22,7 @@ Not an exhaustive list - see [LazyVim keymaps](https://www.lazyvim.org/keymaps) 
 | s | Restored to original vim behavior e i.e. substitute instead of flash.nvim |
 | "+yy | Yank to system clipboard|
 | \<leader\>td | Toggle lsp diagnostics on/off |
+| \<leader\>gg | Launch Lazygit |
 | \<leader\>e | Toggle explorer |
 | \<leader\>/ | Grep for files |
 | \<leader\>ff | Fuzzy find file open |
@@ -34,6 +35,28 @@ Not an exhaustive list - see [LazyVim keymaps](https://www.lazyvim.org/keymaps) 
 | \<leader\>uz | Toggle Zen mode |
 | :Mason | Manage LSP Servers |
 | :checkhealth | Checkhealth |
+
+#### Vim motions handy reference
+
+0 Jump to start of line
+$ Jump to end of line
+f Find character (stop at before) on line forward
+F Find character on line reverse
+t Find character (stop just before) on line forward
+T Find character on line reverse
+; to go forwards
+, to go backwards
+w Jump to next word
+e Jump to end of word
+b Jump to previous word
+W Variation of w
+E Variation of e
+B Variation of b
+{ Paragraph forward
+} Paragraph backward
+zz Shift current line to center
+[ ( Find opening brace 
+* search for current word
 
 
 ### Installation 
