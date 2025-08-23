@@ -5,3 +5,5 @@
 vim.keymap.set("n", "<leader>td", function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { silent = true, noremap = true, desc = "Toggle LSP diagnostics" })
+
+vim.keymap.set("n", "<F10>", function() require("dap").step_over() end, { desc = "DAP: Step Over" })

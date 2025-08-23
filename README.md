@@ -61,6 +61,21 @@ Not an exhaustive list - see [LazyVim keymaps](https://www.lazyvim.org/keymaps) 
 | [ | ( Find opening brace  |
 | * | search for current word |
 
+### Python development
+
+I use [uv](https://github.com/astral-sh/uv) for managing environments. 
+To activate the virtual environment:
+
+    source .venv/bin/activate
+
+And then, launch neovim.
+
+| Key | Description |
+|---|---|
+| \<leader\>d| Bring up debugger menu|
+| \<leader\>d b| Set breakpoint|
+| \<leader\>d c| Run/Continue|
+| f10 | Step over |
 
 ### Installation 
 
