@@ -1,83 +1,110 @@
-## config-nvim
+# Neovim Configuration
 
-This Neovim config originated from LazyVim as part of the Omarchy installation. 
-Omarchy adds a couple of tweaks to the LazyVim starter config. Specifically, 
-Omarchy adds theme switching.
+Personal Neovim configuration written entirely in Lua, using [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager.
 
-I use Neovim across all of my machines (Omarchy and macOS) - and I want as much as 
-consistent experience as possible. 
+## Structure
 
-I have tweaked the LazyVim starter slightly to my taste.
+```
+init.lua                          # Entry point — loads core settings then plugins
+lua/jasondchambers/
+  core/
+    init.lua                      # Requires options and keymaps
+    options.lua                   # Editor options (2-space tabs, relative line numbers, dark theme, system clipboard)
+    keymaps.lua                   # Leader key (Space) and custom keymaps
+  lazy.lua                        # Bootstraps lazy.nvim; auto-discovers plugins from the plugins directory
+  plugins/
+    init.lua                      # Base dependencies (plenary.nvim, vim-tmux-navigator)
+    alpha.lua                     # Start screen (startify theme)
+    auto-session.lua              # Session save/restore
+    dressing.lua                  # Improved UI select/input
+    indent-blankline.lua          # Indent guides
+    lualine.lua                   # Statusline with custom theme colors
+    nvim-tree.lua                 # File explorer sidebar
+    telescope.lua                 # Fuzzy finder (files, grep, buffers)
+    theme.lua                     # Tokyonight (night) with custom color overrides
+    treesitter.lua                # Syntax highlighting and parsing
+    vim-maximizer.lua             # Toggle maximize for splits
+    which-key.lua                 # Keymap hints popup
+```
 
-### Keybindings 
+Load order: `init.lua` → `core` (options, keymaps) → `lazy.lua` (bootstrap + plugin discovery). Each plugin file in `plugins/` returns a lazy.nvim spec table and is auto-discovered.
 
-Not an exhaustive list - see [LazyVim keymaps](https://www.lazyvim.org/keymaps) for a more comprehensive list.
+## Plugins
 
-"\<leader\>" = Space
+| Plugin | Purpose |
+|--------|---------|
+| [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) | Color scheme (night style with custom overrides) |
+| [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua) | File explorer sidebar |
+| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder for files, text, and buffers |
+| [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim) | FZF sorter for Telescope |
+| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Syntax highlighting and code parsing |
+| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Statusline with custom theme |
+| [alpha-nvim](https://github.com/goolord/alpha-nvim) | Start screen |
+| [auto-session](https://github.com/rmagatti/auto-session) | Session management |
+| [which-key.nvim](https://github.com/folke/which-key.nvim) | Keymap hints popup |
+| [dressing.nvim](https://github.com/stevearc/dressing.nvim) | Improved UI for select and input |
+| [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) | Indent guides |
+| [vim-maximizer](https://github.com/szw/vim-maximizer) | Toggle maximize/minimize splits |
+| [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) | Seamless navigation between Neovim splits and tmux panes |
+| [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) | Lua utility library (dependency) |
+| [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) | File type icons (dependency) |
+| [mini.icons](https://github.com/nvim-mini/mini.icons) | Icon provider (dependency) |
 
-| Key | Description |
-|---|---|
-| gd | Goto definition |
-| gr | Find references |
-| s | Restored to original vim behavior e i.e. substitute instead of flash.nvim |
-| "+yy | Yank to system clipboard|
-| \<leader\>td | Toggle lsp diagnostics on/off |
-| \<leader\>gg | Launch Lazygit |
-| \<leader\>e | Toggle explorer |
-| \<leader\>/ | Grep for files |
-| \<leader\>ff | Fuzzy find file open |
-| \<leader\>, | Switch buffer |
-| \<leader\>\| | Split window right |
-| \<leader\>- | Split window below |
-| \<leader\>wd | Delete window |
-| \<leader\>wm | Maximize window |
-| \<leader\>bd | Delete buffer |
-| \<leader\>ft | Open terminal |
-| \<leader\>uz | Toggle Zen mode |
-| :Mason | Manage LSP Servers |
-| :checkhealth | Checkhealth |
+## Keymapping Cheatsheet
 
-#### Vim motions handy reference
+Leader key is **Space**.
 
-| Key | Description |
-|---|---|
-| 0 | Jump to start of line |
-| $ | Jump to end of line |
-| f | Find character (stop at before) on line forward |
-| F | Find character on line reverse |
-| t | Find character (stop just before) on line forward |
-| T | Find character on line reverse |
-| ; | to go forwards |
-| , | to go backwards |
-| w | Jump to next word |
-| e | Jump to end of word |
-| b | Jump to previous word |
-| W | Variation of w |
-| E | Variation of e |
-| B | Variation of b |
-| { | Paragraph forward |
-| } | Paragraph backward |
-| zz | Shift current line to center |
-| [ | ( Find opening brace  |
-| * | search for current word |
+### General
 
-### Python development
+| Keymap | Mode | Description |
+|--------|------|-------------|
+| `<leader>nh` | Normal | Clear search highlights |
+| `<leader>+` | Normal | Increment number |
+| `<leader>-` | Normal | Split window horizontally |
 
-I use [uv](https://github.com/astral-sh/uv) for managing environments. 
-To activate the virtual environment:
+### Window Management
 
-    source .venv/bin/activate
+| Keymap | Mode | Description |
+|--------|------|-------------|
+| `<leader>|` | Normal | Split window vertically |
+| `<leader>-` | Normal | Split window horizontally |
+| `<leader>c` | Normal | Close current split |
+| `<leader>wm` | Normal | Maximize/minimize a split |
 
-And then, launch neovim.
+### File Explorer (nvim-tree)
 
-| Key | Description |
-|---|---|
-| \<leader\>d| Bring up debugger menu|
-| \<leader\>d b| Set breakpoint|
-| \<leader\>d c| Run/Continue|
-| f10 | Step over |
+| Keymap | Mode | Description |
+|--------|------|-------------|
+| `<leader>ee` | Normal | Toggle file explorer |
+| `<leader>ef` | Normal | Toggle file explorer on current file |
+| `<leader>ec` | Normal | Collapse file explorer |
+| `<leader>er` | Normal | Refresh file explorer |
 
-### Installation 
+### Telescope (Fuzzy Finder)
 
-    ./install.sh
+| Keymap | Mode | Description |
+|--------|------|-------------|
+| `<leader>ff` | Normal | Find files in cwd |
+| `<leader>fb` | Normal | Find open buffers |
+| `<leader>fr` | Normal | Find recent files |
+| `<leader>fg` | Normal | Live grep in cwd |
+| `<leader>fc` | Normal | Find string under cursor in cwd |
+| `<C-k>` | Insert (Telescope) | Move to previous result |
+| `<C-j>` | Insert (Telescope) | Move to next result |
+| `<C-q>` | Insert (Telescope) | Send selected to quickfix list |
 
+### Session Management (auto-session)
+
+| Keymap | Mode | Description |
+|--------|------|-------------|
+| `<leader>wr` | Normal | Restore session for cwd |
+| `<leader>ws` | Normal | Save session for cwd |
+
+### Tmux / Split Navigation (vim-tmux-navigator)
+
+| Keymap | Mode | Description |
+|--------|------|-------------|
+| `<C-h>` | Normal | Navigate to left split / tmux pane |
+| `<C-j>` | Normal | Navigate to bottom split / tmux pane |
+| `<C-k>` | Normal | Navigate to top split / tmux pane |
+| `<C-l>` | Normal | Navigate to right split / tmux pane |

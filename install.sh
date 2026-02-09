@@ -8,15 +8,15 @@ omarchy_install() {
   echo "This is Arch Linux."
   if [ -f ~/.config/omarchy/current/theme/neovim.lua ]; then
     echo "This is Omarchy"
-    if [ -L lua/plugins/theme.lua ]; then
+    if [ -L lua/jasondchambers/plugins/theme.lua ]; then
       echo "config-nvim has already been installed"
     else
-      if [ -f lua/plugins/theme.lua ]; then
+      if [ -f lua/jasondchambers/plugins/theme.lua ]; then
         echo "Removing hard-coded theme"
-        rm lua/plugins/theme.lua
+        rm lua/jasondchambers/plugins/theme.lua
       fi
       echo "Creating the link"
-      ln -s ~/.config/omarchy/current/theme/neovim.lua lua/plugins/theme.lua
+      ln -s ~/.config/omarchy/current/theme/neovim.lua lua/jasondchambers/plugins/theme.lua
     fi
   else
     echo "It looks like Omarchy has not been installed"
@@ -26,7 +26,7 @@ omarchy_install() {
 non_omarchy_install() {
   # For everything else non-Omarchy, simply use the default theme
   echo "This is not Omarchy - using default theme"
-  cp lua/plugins/theme.lua.default lua/plugins/theme.lua
+  cp lua/jasondchambers/plugins/theme.lua.default lua/jasondchambers/plugins/theme.lua
 }
 
 point_neovim_to_this_config() {
@@ -54,7 +54,7 @@ point_neovim_to_this_config() {
 
 main() {
 
-  if [ -d lua/plugins ]; then
+  if [ -d lua/jasondchambers/plugins ]; then
     if [ -f /etc/arch-release ]; then
       omarchy_install
     else
