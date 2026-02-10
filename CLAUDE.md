@@ -21,6 +21,8 @@ Personal Neovim configuration for `jasondchambers`, written entirely in Lua. Use
 
 **Plugin discovery:** lazy.nvim is configured with `require("lazy").setup("jasondchambers.plugins")`, which auto-discovers all `.lua` files in the plugins directory. To add a new plugin, create a new file in `lua/jasondchambers/plugins/` returning a lazy.nvim spec table.
 
+Ignore the old folder. 
+
 ## Key Conventions
 
 - **Leader key is Space** — all custom keymaps use `<leader>` prefix
