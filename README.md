@@ -5,7 +5,7 @@ Personal Neovim configuration written entirely in Lua, using [lazy.nvim](https:/
 Based on [Josean's setup](https://www.josean.com/posts/how-to-setup-neovim-2024)
 but modified to my taste and modernized (certain things weren't working in 2026 as Josean's blog post is from 2024).
 
-Still much todo beginning with autocompletion, LSP, lazygit etc (referencing Josean's guide).
+Still much todo beginning with autocompletion, LSP, etc (referencing Josean's guide).
 
 ## Structure
 
