@@ -66,6 +66,7 @@ Leader key is **Space**.
 | `<leader>nh` | Normal | Clear search highlights |
 | `<leader>+` | Normal | Increment number |
 | `<leader>-` | Normal | Split window horizontally |
+| `<leader>lg` | Normal | Launch Lazygit |
 
 ### Window Management
 
