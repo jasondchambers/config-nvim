@@ -33,6 +33,7 @@ lua/jasondchambers/
     lazygit.lua                   # Lazygit integration
     lsp.lua                       # Mason, pyright, nvim-cmp autocompletion
     dap.lua                       # Python debugging (nvim-dap + debugpy + dap-ui)
+    gitsigns.lua                  # Git gutter signs, hunk navigation/staging
 ```
 
 Load order: `init.lua` → `core` (options, keymaps) → `lazy.lua` (bootstrap + plugin discovery). Each plugin file in `plugins/` returns a lazy.nvim spec table and is auto-discovered.
@@ -66,6 +67,7 @@ Load order: `init.lua` → `core` (options, keymaps) → `lazy.lua` (bootstrap +
 | [nvim-dap](https://github.com/mfussenegger/nvim-dap) | Debug Adapter Protocol client |
 | [nvim-dap-python](https://github.com/mfussenegger/nvim-dap-python) | Python-specific DAP config (debugpy) |
 | [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) | Visual debugging UI |
+| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git gutter signs, hunk staging/navigation, blame |
 
 ## Keymapping Cheatsheet
 
@@ -149,6 +151,17 @@ When starting a debug session, select **"Launch file with arguments"** to pass c
 | `<leader>dr` | Normal | Restart debugging |
 | `<leader>dx` | Normal | Terminate debugging |
 | `<leader>du` | Normal | Toggle debug UI |
+
+### Git Signs (gitsigns.nvim)
+
+| Keymap | Mode | Description |
+|--------|------|-------------|
+| `]h` | Normal | Next git hunk |
+| `[h` | Normal | Previous git hunk |
+| `<leader>gp` | Normal | Preview hunk |
+| `<leader>gs` | Normal | Stage hunk |
+| `<leader>gr` | Normal | Reset hunk |
+| `<leader>gb` | Normal | Blame line |
 
 ### Tmux / Split Navigation (vim-tmux-navigator)
 
