@@ -132,6 +132,7 @@ Leader key is **Space**.
 | `<leader>d` | Normal | Show diagnostics float |
 | `]d` | Normal | Next diagnostic |
 | `[d` | Normal | Previous diagnostic |
+| `<leader>td` | Normal | Toggle inline diagnostics |
 
 ### Debugging (nvim-dap)
 
