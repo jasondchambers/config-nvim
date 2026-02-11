@@ -5,7 +5,7 @@ Personal Neovim configuration written entirely in Lua, using [lazy.nvim](https:/
 Based on [Josean's setup](https://www.josean.com/posts/how-to-setup-neovim-2024)
 but modified to my taste and modernized (certain things weren't working in 2026 as Josean's blog post is from 2024).
 
-Still much todo beginning with autocompletion, LSP, etc (referencing Josean's guide).
+Autocompletion (nvim-cmp), LSP (pyright), and Python debugging (nvim-dap + debugpy) are now configured.
 
 ## Structure
 
@@ -30,6 +30,9 @@ lua/jasondchambers/
     treesitter.lua                # Syntax highlighting and parsing
     vim-maximizer.lua             # Toggle maximize for splits
     which-key.lua                 # Keymap hints popup
+    lazygit.lua                   # Lazygit integration
+    lsp.lua                       # Mason, pyright, nvim-cmp autocompletion
+    dap.lua                       # Python debugging (nvim-dap + debugpy + dap-ui)
 ```
 
 Load order: `init.lua` → `core` (options, keymaps) → `lazy.lua` (bootstrap + plugin discovery). Each plugin file in `plugins/` returns a lazy.nvim spec table and is auto-discovered.
@@ -54,6 +57,15 @@ Load order: `init.lua` → `core` (options, keymaps) → `lazy.lua` (bootstrap +
 | [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) | Lua utility library (dependency) |
 | [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) | File type icons (dependency) |
 | [mini.icons](https://github.com/nvim-mini/mini.icons) | Icon provider (dependency) |
+| [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim) | Lazygit integration |
+| [mason.nvim](https://github.com/williamboman/mason.nvim) | LSP/tool installer |
+| [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) | Bridge between Mason and lspconfig |
+| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) | Autocompletion engine |
+| [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp) | LSP completion source |
+| [LuaSnip](https://github.com/L3MON4D3/LuaSnip) | Snippet engine |
+| [nvim-dap](https://github.com/mfussenegger/nvim-dap) | Debug Adapter Protocol client |
+| [nvim-dap-python](https://github.com/mfussenegger/nvim-dap-python) | Python-specific DAP config (debugpy) |
+| [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) | Visual debugging UI |
 
 ## Keymapping Cheatsheet
 
@@ -105,6 +117,38 @@ Leader key is **Space**.
 |--------|------|-------------|
 | `<leader>wr` | Normal | Restore session for cwd |
 | `<leader>ws` | Normal | Save session for cwd |
+
+### LSP (active when language server is attached)
+
+| Keymap | Mode | Description |
+|--------|------|-------------|
+| `gd` | Normal | Go to definition |
+| `gD` | Normal | Go to declaration |
+| `gr` | Normal | Show references |
+| `K` | Normal | Show hover info |
+| `<leader>rn` | Normal | Rename symbol |
+| `<leader>ca` | Normal/Visual | Code action |
+| `<leader>d` | Normal | Show diagnostics float |
+| `]d` | Normal | Next diagnostic |
+| `[d` | Normal | Previous diagnostic |
+
+### Debugging (nvim-dap)
+
+The debugger auto-detects `.venv/bin/python` in the project root (for `uv`-managed projects), falling back to Mason's bundled debugpy. Make sure `debugpy` is installed in your venv: `uv pip install debugpy`.
+
+When starting a debug session, select **"Launch file with arguments"** to pass command-line args (e.g. `Trimedx --verbose`).
+
+| Keymap | Mode | Description |
+|--------|------|-------------|
+| `<leader>db` | Normal | Toggle breakpoint |
+| `<leader>dB` | Normal | Set conditional breakpoint |
+| `<leader>dc` | Normal | Start / continue debugging |
+| `<leader>do` | Normal | Step over |
+| `<leader>di` | Normal | Step into |
+| `<leader>dO` | Normal | Step out |
+| `<leader>dr` | Normal | Restart debugging |
+| `<leader>dx` | Normal | Terminate debugging |
+| `<leader>du` | Normal | Toggle debug UI |
 
 ### Tmux / Split Navigation (vim-tmux-navigator)
 
