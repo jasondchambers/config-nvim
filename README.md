@@ -7,6 +7,9 @@ but modified to my taste and modernized (certain things weren't working in 2026 
 
 Autocompletion (nvim-cmp), LSP (pyright), and Python debugging (nvim-dap + debugpy) are now configured.
 
+![Alt text](screenshot.png)
+
+
 ## Structure
 
 ```
