@@ -79,17 +79,16 @@ Leader key is **Space**.
 |--------|------|-------------|
 | `<leader>nh` | Normal | Clear search highlights |
 | `<leader>+` | Normal | Increment number |
-| `<leader>-` | Normal | Split window horizontally |
 | `<leader>lg` | Normal | Launch Lazygit |
 
 ### Window Management
 
 | Keymap | Mode | Description |
 |--------|------|-------------|
-| `<leader>|` | Normal | Split window vertically |
-| `<leader>-` | Normal | Split window horizontally |
-| `<leader>c` | Normal | Close current split |
-| `<leader>wm` | Normal | Maximize/minimize a split |
+| `<leader>|` | Normal | Split window vertically (Same as tmux) |
+| `<leader>-` | Normal | Split window horizontally Same as tmux) |
+| `<leader>x` | Normal | Close current split (Same as tmux) |
+| `<leader>m` | Normal | Maximize/minimize a split (Same as tmux) |
 
 ### File Explorer (nvim-tree)
 
