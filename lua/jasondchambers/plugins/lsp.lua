@@ -13,7 +13,7 @@ return {
     dependencies = { "williamboman/mason.nvim" },
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "pyright" },
+        ensure_installed = { "pyright", "ruff" },
       })
       -- Also ensure debugpy is installed for Python debugging
       local mason_registry = require("mason-registry")
@@ -30,6 +30,13 @@ return {
     config = function()
       local cmp_nvim_lsp = require("cmp_nvim_lsp")
       local capabilities = cmp_nvim_lsp.default_capabilities()
+
+      -- Show diagnostic messages as inline virtual text
+      vim.diagnostic.config({
+        virtual_text = true,
+        signs = true,
+        underlines = true,
+      })
 
       -- Keymaps that activate when an LSP attaches to a buffer
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -63,6 +70,11 @@ return {
 
           opts.desc = "Previous diagnostic"
           vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+
+          opts.desc = "Toggle inline diagnostics"
+          vim.keymap.set("n", "<leader>td", function()
+            vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+          end, opts)
         end,
       })
 
@@ -81,8 +93,26 @@ return {
         },
       })
 
-      -- Enable the LSP server (auto-attaches to matching filetypes)
+      -- Configure ruff linter (runs alongside pyright)
+      vim.lsp.config("ruff", {
+        capabilities = capabilities,
+        cmd = { "ruff", "server" },
+        filetypes = { "python" },
+        root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", "setup.py", ".git" },
+        init_options = {
+          settings = {
+            lineLength = 120,
+          },
+        },
+        -- Disable hover so it doesn't conflict with pyright
+        on_attach = function(client)
+          client.server_capabilities.hoverProvider = false
+        end,
+      })
+
+      -- Enable LSP servers (auto-attach to matching filetypes)
       vim.lsp.enable("pyright")
+      vim.lsp.enable("ruff")
     end,
   },
 
