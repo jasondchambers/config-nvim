@@ -85,7 +85,7 @@ Leader key is **Space**.
 
 | Keymap | Mode | Description |
 |--------|------|-------------|
-| `<leader>|` | Normal | Split window vertically (Same as tmux) |
+| `<leader>\|` | Normal | Split window vertically (Same as tmux) |
 | `<leader>-` | Normal | Split window horizontally Same as tmux) |
 | `<leader>x` | Normal | Close current split (Same as tmux) |
 | `<leader>m` | Normal | Maximize/minimize a split (Same as tmux) |
