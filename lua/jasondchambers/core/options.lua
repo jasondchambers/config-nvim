@@ -37,4 +37,17 @@ opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or 
 -- clipboard - when you yank, it will copy to the systtem clipboard
 opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
+vim.opt.autoread = true
 
+-- This whole block makes neovim reload external changes to the file reflect in neovim
+-- Useful for when working with AI agents
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  pattern = "*",
+  callback = function()
+    if vim.fn.mode() ~= "c" then
+      vim.cmd("checktime")
+    end
+  end,
+})
+opt.updatetime = 1000 -- run checktime more regularly
+opt.swapfile = false
