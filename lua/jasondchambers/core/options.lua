@@ -37,10 +37,14 @@ opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or 
 -- clipboard - when you yank, it will copy to the systtem clipboard
 opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
-vim.opt.autoread = true
-
+-------------------------------------------------------------------------------
+-- This section inspired by this video https://www.youtube.com/watch?v=lljs_7xB7Ps&t=1953s
+-------------------------------------------------------------------------------
+---
 -- This whole block makes neovim reload external changes to the file reflect in neovim
 -- Useful for when working with AI agents
+vim.opt.autoread = true
+vim.opt.autowrite = false
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
   pattern = "*",
   callback = function()
@@ -51,3 +55,29 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHo
 })
 opt.updatetime = 1000 -- run checktime more regularly
 opt.swapfile = false
+
+-- Show a column at 80 columns
+opt.colorcolumn = "80"
+-- Keep 10 lines above/below cursor when scrolling
+opt.scrolloff = 10
+
+-- return to last cursor position
+vim.api.nvim_create_autocmd("BufReadPost", {
+	group = augroup,
+	desc = "Restore last cursor position",
+	callback = function()
+		if vim.o.diff then -- except in diff mode
+			return
+		end
+
+		local last_pos = vim.api.nvim_buf_get_mark(0, '"') -- {line, col}
+		local last_line = vim.api.nvim_buf_line_count(0)
+
+		local row = last_pos[1]
+		if row < 1 or row > last_line then
+			return
+		end
+
+		pcall(vim.api.nvim_win_set_cursor, 0, last_pos)
+	end,
+})
